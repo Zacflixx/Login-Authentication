@@ -1,4 +1,4 @@
-                                               React Native Cheatsheet
+                                               React Native Cheatsheet    stack navigation use version 4
 ## Create new project
 
 ## install dependencies
