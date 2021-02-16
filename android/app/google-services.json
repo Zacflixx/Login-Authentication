@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "801513165989",
+    "project_id": "rnlogin-1cbbc",
+    "storage_bucket": "rnlogin-1cbbc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:801513165989:android:d27af626a6a315f427e94c",
+        "android_client_info": {
+          "package_name": "com.signin_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "801513165989-9757b0sjv6tf877nhkh9kb8epl7faknp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfoDTK0RfG5xvz6_6txc6-1r055oGzUko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "801513165989-9757b0sjv6tf877nhkh9kb8epl7faknp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
