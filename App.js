@@ -7,8 +7,8 @@ import ReduxThunk from 'redux-thunk';
 import {connect} from 'react-redux';
 
 class App extends Component {
-    render() {
-        return <Routes />;
-    }
+  render() {
+    return <Routes />;
+  }
 }
 export default App;
