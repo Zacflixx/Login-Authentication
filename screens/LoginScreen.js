@@ -1,127 +1,152 @@
-import {useContext, useState} from 'react';
-import React, {Component} from 'react';
+// import React from 'react';
+// import {Button} from 'react-native';
+
+// function GoogleSignIn() {
+//   return (
+//     <Button
+//       title="Google Sign-In"
+//       onPress={() =>
+//         onGoogleButtonPress().then(() => console.log('Signed in with Google!'))
+//       }
+//     />
+//   );
+// }
+
+import React, {Component, useState} from 'react';
 import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
   Platform,
   StyleSheet,
-  ScrollView,
+  UIManager,
+  Text,
+  View,
+  SafeAreaView,
+  TouchableHighlight,
+  ActivityIndicator,
+  TextInput,
+  TouchableOpacity,
+  LayoutAnimation,
+  Alert,
 } from 'react-native';
-import FormInput from '../components/FormInput';
-import FormButton from '../components/FormButton';
-import SocialButton from '../components/SocialButton';
 
-export class Login extends Component {
+import auth, {firebase} from '@react-native-firebase/auth';
+
+export class Inside extends Component {
   render() {
     return (
-      <ScrollView contentContainerStyle={styles.container}>
-        <Image source={require('../assets/zee.png')} style={styles.logo} />
-        <Text style={styles.text}>Login Test App</Text>
+      <View style={styles.containerStyle}>
+        <Text style={{textAlign: 'center'}}>
+          email is this {firebase.auth().currentUser.email}{' '}
+        </Text>
 
-        <FormInput
-          //   labelValue={email}
-          //   onChangeText={(userEmail) => setEmail(userEmail)}
-          placeholderText="Email"
-          iconType="user"
-          keyboardType="email-address"
-          autoCapitalize="none"
-          autoCorrect={false}
-        />
-
-        <FormInput
-          //   labelValue={password}
-          //   onChangeText={(userPassword) => setPassword(userPassword)}
-          placeholderText="Password"
-          iconType="lock"
-          secureTextEntry={true}
-        />
-
-        <FormButton
-          buttonTitle="Sign In"
-          //   onPress={() => login(email, password)}
-        />
-
-        <TouchableOpacity style={styles.forgotButton} onPress={() => {}}>
-          <Text style={styles.navButtonText}>Forgot Password?</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.forgotButton2}
-          //   onPress={() => navigation.navigate('Signup')}
-        >
-          <Text style={styles.navButtonText}>
-            Don't have an acount? Create here
-          </Text>
-        </TouchableOpacity>
-        {Platform.OS === 'android' ? (
-          <View>
-            <SocialButton
-              buttonTitle="Sign In with Facebook"
-              btnType="facebook"
-              color="#4867aa"
-              backgroundColor="#e6eaf4"
-              //   onPress={() => fbLogin()}
-            />
-
-            <SocialButton
-              buttonTitle="Sign In with Google"
-              btnType="google"
-              color="#de4d41"
-              backgroundColor="#f5e7ea"
-              //   onPress={() => googleLogin()}
-            />
-          </View>
-        ) : null}
-      </ScrollView>
+        <View style={styles.loginButtonContainerStyle}>
+          <TouchableOpacity
+            style={styles.loginButtonStyle}
+            onPress={async () => {
+              await firebase.auth().signOut();
+            }}>
+            <Text style={styles.loginButtonTextStyle}> Log Out</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     );
   }
 }
 
+const baseMargin = 5;
+const doubleBaseMargin = 10;
+const blue = '#ff0000';
+
 const styles = StyleSheet.create({
-  container: {
+  containerStyle: {
     flex: 1,
+    justifyContent: 'space-around',
+  },
+  headerContainerStyle: {
+    flex: 0.2,
+    alignItems: 'center',
+  },
+  headerTitleStyle: {
+    color: blue,
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
+  formContainerStyle: {
+    paddingHorizontal: doubleBaseMargin,
+    justifyContent: 'space-around',
+  },
+  textInputStyle: {
+    height: 60,
+    marginVertical: baseMargin,
+    borderRadius: 6,
+    paddingHorizontal: doubleBaseMargin,
+    backgroundColor: 'transparent',
+    borderColor: '#888',
+    borderWidth: 1,
+  },
+  signInButtonContainerStyle: {
+    flex: 0.3,
+    marginTop: doubleBaseMargin,
+    alignItems: 'flex-end',
+    paddingHorizontal: baseMargin,
+  },
+  signInButtonStyle: {
+    width: 130,
+    height: 50,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    borderRadius: 130 / 4,
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
+  signInButtonTextStyle: {
+    color: 'black',
+    textAlign: 'center',
+    alignSelf: 'center',
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginHorizontal: baseMargin,
+  },
+  signInWithGoogleButtonContainerStyle: {
+    flex: 0.2,
+    paddingHorizontal: doubleBaseMargin,
+  },
+  signInWithGoogleButtonStyle: {
+    height: 50,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    borderRadius: 130 / 4,
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
+  signInWithGoogleButtonTextStyle: {
+    color: 'black',
+    textAlign: 'center',
+    alignSelf: 'center',
+    fontSize: 14,
+    fontWeight: 'bold',
+
+    marginHorizontal: baseMargin,
+  },
+  errorLabelContainerStyle: {
+    flex: 0.1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  errorTextStyle: {
+    color: 'red',
+    textAlign: 'center',
+  },
+  loginButtonContainerStyle: {
+    flex: 0.2,
+    paddingHorizontal: baseMargin,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 10,
-    paddingTop: 30,
   },
-  logo: {
-    // flex: 1,
-    marginTop: 70,
-
-    height: 100,
-    width: 380,
-    borderColor: '#298bcc',
-    borderWidth: 2,
-    // resizeMode: 'cover',
+  loginButtonStyle: {
+    alignItems: 'center',
   },
-  text: {
-    fontFamily: 'Kufam-SemiBoldItalic',
-    fontSize: 25,
-    marginBottom: 40,
-    marginRight: 30,
-    color: '#051d5f',
-    alignSelf: 'flex-end',
-  },
-  navButton: {
-    marginTop: 15,
-  },
-  forgotButton: {
-    marginVertical: 10,
-    alignSelf: 'flex-end',
-    marginRight: 30,
-  },
-  forgotButton2: {
-    marginVertical: 20,
-    marginBottom: 20,
-  },
-  navButtonText: {
-    fontSize: 18,
-    fontWeight: '500',
-    color: '#2e64e5',
-    fontFamily: 'Lato-Regular',
+  loginButtonTextStyle: {
+    color: blue,
   },
 });
-
-export default Login;
+export default Inside;

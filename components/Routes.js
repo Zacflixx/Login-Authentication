@@ -27,20 +27,20 @@ const Loginscreen = createStackNavigator({
     //     }),
     // },
   },
-  About: {screen: About},
+  //   About: {screen: About},
 
-  Inside: {
-    screen: Inside,
-    // navigationOptions: () => ({
-    //     headerTitle: 'Edit your text',
-    //     headerShown: false,
-    // }),
-  },
+  //   Inside: {
+  //     screen: Inside,
+  //     // navigationOptions: () => ({
+  //     //     headerTitle: 'Edit your text',
+  //     //     headerShown: false,
+  //     // }),
+  //   },
 });
 
-const BottomTab = createBottomTabNavigator({
-  // this is the bottom tab naigator that will be exported .
-  Loginscreen: {screen: Loginscreen},
-});
+// const BottomTab = createBottomTabNavigator({
+//   // this is the bottom tab naigator that will be exported .
+//   Loginscreen: {screen: Loginscreen},
+// });
 
-export default Routes = createAppContainer(BottomTab);
+export default Routes = createAppContainer(Loginscreen);
